@@ -25,5 +25,10 @@ namespace ZooManagemtSystem
         {
             InitializeComponent();
         }
+
+        private void AnimalManagement_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
