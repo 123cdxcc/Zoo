@@ -1,0 +1,9 @@
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\bin\Debug\ZooManagemtSystem.exe.config
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\bin\Debug\ZooManagemtSystem.exe
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\bin\Debug\ZooManagemtSystem.pdb
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.csprojAssemblyReference.cache
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.Properties.Resources.resources
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.exe
+C:\Users\Administrator\Desktop\ZooManagemtSystem\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.pdb
