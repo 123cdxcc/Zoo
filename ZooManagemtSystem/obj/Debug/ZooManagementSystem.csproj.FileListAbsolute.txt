@@ -36,3 +36,5 @@ C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagementSyst
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagementSystem.csproj.CoreCompileInputs.cache
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.exe
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.pdb
+C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FoodManagement.resources
+C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FeedManagement.resources
