@@ -8,3 +8,27 @@ GO
 INSERT INTO Food(name, total, birth, expirationDate) values('白菜苏', 100, '2000-2-2', '2021-2-2')
 INSERT INTO Food(name, total, birth, expirationDate) values('白菜刘', 100, '2000-2-2', '2021-2-2')
 INSERT INTO Food(name, total, birth, expirationDate) values('白菜刘', 100, '2000-2-2', '2021-2-2')
+
+--插入部门--
+INSERT INTO Department(name, [address], telephone) values('饲养部', '希曼岛', '15211556262')
+INSERT INTO Department(name, [address], telephone) values('采购部', '王八岛', '15211556262')
+
+--插入职工--
+INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('小鸡王', '男', '老板', '2000-1-1', 1000, '123456', 1)
+INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('小鸡刘', '男', '员工', '2000-1-1', 1000, '123456', 1)
+INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('小鸡张', '男', '员工', '2000-1-1', 1000, '123456', 1)
+INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('小鸡苏', '男', '员工', '2000-1-1', 1000, '123456', 1)
+/*
+CREATE TABLE Worker(
+	id int primary key IDENTITY(2021000,1),
+	name nvarchar(10) not null,
+	sex nvarchar(2),
+	position nvarchar(10),
+	birth datetime check((YEAR(GETDATE()) - YEAR(birth)) >= 18),
+	wage money,
+	[password] nvarchar(20),
+	did int,
+	foreign key (did) references Department(id),
+)
+
+*/

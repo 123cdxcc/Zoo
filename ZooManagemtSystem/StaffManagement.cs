@@ -30,64 +30,42 @@ namespace ZooManagemtSystem
 
         private void StaffManagement_Load(object sender, EventArgs e)
         {
-            LoadData();
+            LoadData(null);
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.ReadOnly = true;
         }
 
         // 加载数据
-        private void LoadData()
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("编号", typeof(string));
-            dt.Columns.Add("姓名", typeof(string));
-            dt.Columns.Add("性别", typeof(string));
-            dt.Columns.Add("年龄", typeof(string));
-            dt.Columns.Add("职位", typeof(string));
-            dt.Columns.Add("密码", typeof(string));
-
-            var sql = "select Wid, Wname, Wsex, (YEAR(GETDATE()) - YEAR(Wbirth)) as age, Wwage, Wposition from Worker";
-            SqlDataReader dr = db.ExecuteReader(sql);
-            DateTime time = DateTime.Now;
-            for (var i = 0; dr.Read(); i++)
-            {
-                dt.Rows.Add(dt.NewRow());
-                dt.Rows[i][0] = dr["Wid"];
-                dt.Rows[i][1] = dr["Wname"];
-                dt.Rows[i][2] = dr["Wsex"];
-                dt.Rows[i][3] = dr["age"];
-                dt.Rows[i][4] = dr["entry"];
-                dt.Rows[i][5] = dr["position"];
-                dt.Rows[i][6] = dr["salary"];
-            }
-
-            dataGridView1.DataSource = dt;
-        }
-
         private void LoadData(string name)
         {
             DataTable dt = new DataTable();
             dt.Columns.Add("编号", typeof(string));
             dt.Columns.Add("姓名", typeof(string));
             dt.Columns.Add("性别", typeof(string));
-            dt.Columns.Add("年龄", typeof(string));
-            dt.Columns.Add("入职时间", typeof(string));
             dt.Columns.Add("职位", typeof(string));
+            dt.Columns.Add("年龄", typeof(string));
             dt.Columns.Add("工资", typeof(string));
+            dt.Columns.Add("密码", typeof(string));
+            dt.Columns.Add("部门", typeof(string));
 
-            var sql = "select id, name, sex, (YEAR(GETDATE()) - YEAR(birth)) as age, entry, position, salary from Staff where name='" + name + "'";
+            var sql = "select [Worker].[id], [Worker].[name], [sex], [position], (YEAR(GETDATE()) - YEAR(birth)) as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id";
+            if(!string.IsNullOrEmpty(name))
+            {
+                sql = "select [Worker].[id], [Worker].[name], [sex], [position], (YEAR(GETDATE()) - YEAR(birth)) as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id WHERE Worker.name={0}";
+                sql = String.Format(sql, name);
+            }
             SqlDataReader dr = db.ExecuteReader(sql);
-            DateTime time = DateTime.Now;
             for (var i = 0; dr.Read(); i++)
             {
                 dt.Rows.Add(dt.NewRow());
                 dt.Rows[i][0] = dr["id"];
                 dt.Rows[i][1] = dr["name"];
                 dt.Rows[i][2] = dr["sex"];
-                dt.Rows[i][3] = dr["age"];
-                dt.Rows[i][4] = dr["entry"];
-                dt.Rows[i][5] = dr["position"];
-                dt.Rows[i][6] = dr["salary"];
+                dt.Rows[i][3] = dr["position"];
+                dt.Rows[i][4] = dr["age"];
+                dt.Rows[i][5] = dr["wage"];
+                dt.Rows[i][6] = dr["password"];
+                dt.Rows[i][7] = dr["dName"];
             }
 
             dataGridView1.DataSource = dt;
@@ -122,7 +100,7 @@ namespace ZooManagemtSystem
                 bool flag = db.ExecuteNonQuery(sql);
                 if (flag)
                 {
-                    LoadData();
+                    LoadData(null);
                     MessageBox.Show("添加成功");
                 }
                 else
@@ -134,7 +112,7 @@ namespace ZooManagemtSystem
                 bool flag = db.ExecuteNonQuery(sql);
                 if (flag)
                 {
-                    LoadData();
+                    LoadData(null);
                     MessageBox.Show("更新成功");
                 }
                 else
