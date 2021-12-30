@@ -35,12 +35,11 @@ namespace ZooManagemtSystem
         private void Button1_Click(object sender, EventArgs e)
         {
             Home.GetInstance().Show();
-            return;
             string usernmae = tb_username.Text;
             string password = tb_password.Text;
             SqlDataReader dr = null;
 
-            string sql = "select name from Staff where id='{0}' and pwd='{1}'";
+            string sql = "select name from Worker where id={0} and password='{1}'";
             sql = String.Format(sql, usernmae, password);
 
             dr = db.ExecuteReader(sql);

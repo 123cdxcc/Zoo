@@ -26,17 +26,7 @@ namespace ZooManagemtSystem
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void AnimalManagement_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bt_add_Click(object sender, EventArgs e)
         {
 
         }

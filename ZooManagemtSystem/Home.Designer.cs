@@ -38,9 +38,10 @@
             // 
             // Staff
             // 
-            this.Staff.Location = new System.Drawing.Point(199, 79);
+            this.Staff.Location = new System.Drawing.Point(265, 99);
+            this.Staff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(119, 44);
+            this.Staff.Size = new System.Drawing.Size(159, 55);
             this.Staff.TabIndex = 0;
             this.Staff.Text = "职工管理";
             this.Staff.UseVisualStyleBackColor = true;
@@ -48,9 +49,10 @@
             // 
             // Animal
             // 
-            this.Animal.Location = new System.Drawing.Point(387, 79);
+            this.Animal.Location = new System.Drawing.Point(516, 99);
+            this.Animal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Animal.Name = "Animal";
-            this.Animal.Size = new System.Drawing.Size(119, 44);
+            this.Animal.Size = new System.Drawing.Size(159, 55);
             this.Animal.TabIndex = 1;
             this.Animal.Text = "动物管理";
             this.Animal.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // 
             // Food
             // 
-            this.Food.Location = new System.Drawing.Point(199, 172);
+            this.Food.Location = new System.Drawing.Point(265, 215);
+            this.Food.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Food.Name = "Food";
-            this.Food.Size = new System.Drawing.Size(119, 44);
+            this.Food.Size = new System.Drawing.Size(159, 55);
             this.Food.TabIndex = 2;
             this.Food.Text = "食物管理";
             this.Food.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // 
             // Feed
             // 
-            this.Feed.Location = new System.Drawing.Point(387, 172);
+            this.Feed.Location = new System.Drawing.Point(516, 215);
+            this.Feed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Feed.Name = "Feed";
-            this.Feed.Size = new System.Drawing.Size(119, 44);
+            this.Feed.Size = new System.Drawing.Size(159, 55);
             this.Feed.TabIndex = 3;
             this.Feed.Text = "投食记录";
             this.Feed.UseVisualStyleBackColor = true;
@@ -78,9 +82,10 @@
             // 
             // Purchase
             // 
-            this.Purchase.Location = new System.Drawing.Point(199, 257);
+            this.Purchase.Location = new System.Drawing.Point(265, 321);
+            this.Purchase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Purchase.Name = "Purchase";
-            this.Purchase.Size = new System.Drawing.Size(119, 44);
+            this.Purchase.Size = new System.Drawing.Size(159, 55);
             this.Purchase.TabIndex = 4;
             this.Purchase.Text = "采购记录";
             this.Purchase.UseVisualStyleBackColor = true;
@@ -88,9 +93,10 @@
             // 
             // Care
             // 
-            this.Care.Location = new System.Drawing.Point(387, 257);
+            this.Care.Location = new System.Drawing.Point(516, 321);
+            this.Care.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Care.Name = "Care";
-            this.Care.Size = new System.Drawing.Size(119, 44);
+            this.Care.Size = new System.Drawing.Size(159, 55);
             this.Care.TabIndex = 5;
             this.Care.Text = "照料记录";
             this.Care.UseVisualStyleBackColor = true;
@@ -98,17 +104,19 @@
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 562);
             this.Controls.Add(this.Care);
             this.Controls.Add(this.Purchase);
             this.Controls.Add(this.Feed);
             this.Controls.Add(this.Food);
             this.Controls.Add(this.Animal);
             this.Controls.Add(this.Staff);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Home";
             this.Text = "Home";
+            this.Load += new System.EventHandler(this.Home_Load);
             this.ResumeLayout(false);
 
         }

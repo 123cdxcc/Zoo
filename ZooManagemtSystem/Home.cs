@@ -57,5 +57,10 @@ namespace ZooManagemtSystem
         {
             CareMangement.GetInstance().Show();
         }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
