@@ -84,9 +84,9 @@ namespace ZooManagemtSystem
             else
             {
                 SqlDataReader dr = null;
-                var findByDepartment = "select id from department where name='{0}'";
-                findByDepartment = string.Format(findByDepartment, tb_department.Text);
-                dr = db.ExecuteReader(findByDepartment);
+                var findIdByDepartment = "select id from department where name='{0}'";
+                findIdByDepartment = string.Format(findIdByDepartment, tb_department.Text);
+                dr = db.ExecuteReader(findIdByDepartment);
                 if (dr.Read())
                 { 
                     var sql = "INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('{0}', '{1}', '{2}', '{3}', {4}, '{5}', {6})";
@@ -112,19 +112,86 @@ namespace ZooManagemtSystem
         //修改
         private void Bt_up_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(tb_id.Text))
+            {
+                MessageBox.Show("职工编号不可以为空");
+            }
+            else
+            {
+                SqlDataReader dr = null;
+                var findIdByDepartment = "select id from department where name='{0}'";
+                findIdByDepartment = string.Format(findIdByDepartment, tb_department.Text);
+                dr = db.ExecuteReader(findIdByDepartment);
+                if (dr.Read())
+                {
+                    var sql = "update Worker set name='{0}',sex='{1}',position='{2}',birth='{3}',wage='{4}',[password]='{5}',did='{6}' where id={7}";
+                    sql = string.Format(sql, tb_name.Text, tb_sex.Text, tb_pos.Text, dtp_birth.Value.ToString(), tb_wage.Text, tb_pwd.Text, dr["id"], tb_id.Text);
+                    if (db.ExecuteNonQuery(sql))
+                    {
+                        LoadData(null);
+                        MessageBox.Show("修改成功");
+                    }
+                    else
+                    {
+                        MessageBox.Show("修改失败");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("修改失败，请检查部门");
+                }
+            }
         }
 
         //查询
         private void Bt_sel_Click(object sender, EventArgs e)
         {
-
+            
+            if (string.IsNullOrEmpty(tb_id.Text))
+            {
+                MessageBox.Show("员工编号不可以为空");
+            }
+            else
+            {
+                var sql = "select [Worker].[id], [Worker].[name], [sex], [position], birth as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id where Worker.id={0}";
+                sql = string.Format(sql, tb_id.Text);
+                SqlDataReader dr = db.ExecuteReader(sql);
+                if(dr.Read())
+                {
+                    tb_name.Text = dr["name"].ToString();
+                    tb_sex.Text = dr["sex"].ToString();
+                    tb_pos.Text = dr["position"].ToString();
+                    var age = DateTime.Parse(dr["age"].ToString());
+                    dtp_birth.Value = age;
+                    tb_wage.Text = dr["wage"].ToString();
+                    tb_pwd.Text = dr["password"].ToString();
+                    tb_department.Text = dr["dName"].ToString();
+                }
+            }
+            
         }
 
         //删除
         private void Bt_del_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(tb_id.Text))
+            {
+                MessageBox.Show("员工编号不可以为空");
+            }
+            else
+            {
+                var sql = "delete Worker where id={0}";
+                sql = string.Format(sql, tb_id.Text);
+                if (db.ExecuteNonQuery(sql))
+                {
+                    LoadData(null);
+                    MessageBox.Show("删除成功");
+                }
+                else
+                {
+                    MessageBox.Show("删除失败");
+                }
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

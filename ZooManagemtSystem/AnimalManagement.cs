@@ -30,5 +30,19 @@ namespace ZooManagemtSystem
         {
 
         }
+
+        private void LoadData()
+        {
+            //INSERT INTO Animal(name, species, birth, sex, [state]) values('王八苏', '乌龟', '2000-1-1', '雌', '健康')
+            DataTable dt = new DataTable();
+            dt.Columns.Add("编号", typeof(string));
+            dt.Columns.Add("姓名", typeof(string));
+            dt.Columns.Add("性别", typeof(string));
+            dt.Columns.Add("职位", typeof(string));
+            dt.Columns.Add("年龄", typeof(string));
+            dt.Columns.Add("工资", typeof(string));
+            dt.Columns.Add("密码", typeof(string));
+            dt.Columns.Add("部门", typeof(string));
+        }
     }
 }
