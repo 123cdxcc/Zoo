@@ -116,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PurchaseManagement.resx">
+      <DependentUpon>PurchaseManagement.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StaffManagement.resx">
       <DependentUpon>StaffManagement.cs</DependentUpon>
     </EmbeddedResource>

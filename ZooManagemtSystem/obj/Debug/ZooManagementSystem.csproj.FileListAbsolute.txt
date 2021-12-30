@@ -36,3 +36,4 @@ C:\Users\25824\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagementSystem.cspro
 C:\Users\25824\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagementSystem.csproj.CoreCompileInputs.cache
 C:\Users\25824\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.exe
 C:\Users\25824\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.pdb
+C:\Users\25824\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.PurchaseManagement.resources
