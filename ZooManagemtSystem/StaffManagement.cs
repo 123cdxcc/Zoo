@@ -30,9 +30,11 @@ namespace ZooManagemtSystem
 
         private void StaffManagement_Load(object sender, EventArgs e)
         {
-            LoadData(null);
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.RowHeadersVisible = false;
-            dataGridView1.ReadOnly = true;
+            dataGridView1.ReadOnly = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            LoadData(null);
         }
 
         // 加载数据
@@ -48,10 +50,10 @@ namespace ZooManagemtSystem
             dt.Columns.Add("密码", typeof(string));
             dt.Columns.Add("部门", typeof(string));
 
-            var sql = "select [Worker].[id], [Worker].[name], [sex], [position], (YEAR(GETDATE()) - YEAR(birth)) as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id";
+            var sql = "select [Worker].[id], [Worker].[name], [sex], [position], birth as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id";
             if(!string.IsNullOrEmpty(name))
             {
-                sql = "select [Worker].[id], [Worker].[name], [sex], [position], (YEAR(GETDATE()) - YEAR(birth)) as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id WHERE Worker.name={0}";
+                sql = "select [Worker].[id], [Worker].[name], [sex], [position], birth as age, [wage], password, Department.name as dName from Worker join Department on did=Department.id WHERE Worker.name={0}";
                 sql = String.Format(sql, name);
             }
             SqlDataReader dr = db.ExecuteReader(sql);
@@ -62,7 +64,8 @@ namespace ZooManagemtSystem
                 dt.Rows[i][1] = dr["name"];
                 dt.Rows[i][2] = dr["sex"];
                 dt.Rows[i][3] = dr["position"];
-                dt.Rows[i][4] = dr["age"];
+                var age = DateTime.Now.Year - DateTime.Parse(dr["age"].ToString()).Year;
+                dt.Rows[i][4] = age;
                 dt.Rows[i][5] = dr["wage"];
                 dt.Rows[i][6] = dr["password"];
                 dt.Rows[i][7] = dr["dName"];
@@ -74,49 +77,35 @@ namespace ZooManagemtSystem
         //增加
         private void Bt_add_Click(object sender, EventArgs e)
         {
-            var id = tb_id.Text;
-            var name = tb_name.Text;
-            var pwd = tb_pwd.Text;
-            var sex = tb_sex.Text;
-            var birth = dtp_birth.Value;
-            var time = DateTime.Now;
-            if (
-                string.IsNullOrWhiteSpace(name) ||
-                string.IsNullOrWhiteSpace(pwd))
+            if(String.IsNullOrEmpty(tb_name.Text))
             {
-                MessageBox.Show("内容不可以为空！");
-                return;
-            }
-            else if ((time.Year - birth.Year) < 18)
-            {
-                MessageBox.Show("年龄小于18岁！");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                var sql = string.Format("insert into Staff(name, sex, birth, pwd, entry, position, salary) " +
-                        "values('{0}', '{1}', '{2}', '{3}', GETDATE(), '员工', 3000)", name, sex, birth, pwd);
-                bool flag = db.ExecuteNonQuery(sql);
-                if (flag)
-                {
-                    LoadData(null);
-                    MessageBox.Show("添加成功");
-                }
-                else
-                    MessageBox.Show("添加失败");
+                MessageBox.Show("名字不可以为空");
             }
             else
             {
-                var sql = string.Format("update Staff set name='{0}', pwd='{1}',sex='{2}', birth='{3}' where id={4}", name, pwd, sex, birth, id);
-                bool flag = db.ExecuteNonQuery(sql);
-                if (flag)
-                {
-                    LoadData(null);
-                    MessageBox.Show("更新成功");
+                SqlDataReader dr = null;
+                var findByDepartment = "select id from department where name='{0}'";
+                findByDepartment = string.Format(findByDepartment, tb_department.Text);
+                dr = db.ExecuteReader(findByDepartment);
+                if (dr.Read())
+                { 
+                    var sql = "INSERT INTO Worker(name, sex, position, birth, wage, [password], did) values('{0}', '{1}', '{2}', '{3}', {4}, '{5}', {6})";
+                    sql = string.Format(sql, tb_name.Text, tb_sex.Text, tb_pos.Text, dtp_birth.Value.ToString(), tb_wage.Text, tb_pwd.Text, dr["id"]);
+                    if (db.ExecuteNonQuery(sql))
+                    {
+                        MessageBox.Show("添加成功");
+                        LoadData(null);
+                    }
+                    else
+                    {
+                        MessageBox.Show("添加失败");
+                    }
                 }
                 else
-                    MessageBox.Show("更新失败");
+                {
+                    MessageBox.Show("添加失败,请检查部门是否正确");
+                }
+                
             }
         }
 
@@ -135,6 +124,33 @@ namespace ZooManagemtSystem
         //删除
         private void Bt_del_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.CurrentRow;
+            var id = row.Cells["编号"].Value.ToString();
+            var name = row.Cells["姓名"].Value.ToString();
+            var sex = row.Cells["性别"].Value.ToString();
+            var position = row.Cells["职位"].Value.ToString();
+            var birth = row.Cells["年龄"].Value.ToString();
+            var wage = row.Cells["工资"].Value.ToString();
+            var password = row.Cells["密码"].Value.ToString();
+            var department = row.Cells["部门"].Value.ToString();
+
+            tb_id.Text = id;
+            tb_name.Text = name;
+            tb_sex.Text = sex;
+            tb_pos.Text = position;
+
+            var sql = "select birth from Worker where id=" + tb_id.Text;
+            SqlDataReader dr = db.ExecuteReader(sql);
+            if(dr.Read()) dtp_birth.Value = DateTime.Parse(dr["birth"].ToString());
+
+            tb_wage.Text = wage;
+            tb_pwd.Text = password;
+            tb_department.Text = department;
 
         }
     }

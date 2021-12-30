@@ -38,3 +38,5 @@ C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.pdb
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FoodManagement.resources
 C:\Users\Administrator\Desktop\Zoo\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FeedManagement.resources
+E:\code\c#\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FeedManagement.resources
+E:\code\c#\ZooManagemtSystem\ZooManagemtSystem\obj\Debug\ZooManagemtSystem.FoodManagement.resources

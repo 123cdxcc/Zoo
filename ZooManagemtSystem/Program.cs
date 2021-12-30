@@ -16,7 +16,7 @@ namespace ZooManagemtSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(Login.GetInstance());
+            Application.Run(StaffManagement.GetInstance());
         }
     }
 }
